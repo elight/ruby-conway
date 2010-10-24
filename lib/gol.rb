@@ -47,3 +47,25 @@ def game(initial_state)
     board.extend GameOfLife
   end
 end
+
+def game_from_lifewiki_text_file(filename)
+  lines = nil
+  File.open(filename) do |file|
+    lines = file.readlines
+  end
+  lines = lines.reject { |l| l =~ /^\!/ }
+  num_rows = lines.length
+  num_cols = lines.inject("") { |max, l| max = l if l.length > max.length; max }.chop.length
+  Array.new(num_cols) { Array.new(num_rows) { 0 } }.tap do |grid|
+    lines.each_with_index do |line, y|
+      line.chop!
+      line.length.times do |x| 
+        if line[x].chr == "O"
+          grid[x][y] = 1
+        end
+      end
+    end
+    grid.extend GameOfLife
+  end
+end
+
