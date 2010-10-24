@@ -5,16 +5,16 @@ require 'lib/gol'
 class GolProcessing < Processing::App
   WIDTH       = 1024
   HEIGHT      = 1024
-  VIDEOSCALE  = 4
+  VIDEOSCALE  = 16
 
   def setup
-    @grid = game_from_lifewiki_text_file "/Users/light/Downloads/sidecargun.cells"
+    @grid = game_from_lifewiki_text_file "/Users/light/Downloads/newgun2.cells"
     @cols = WIDTH / VIDEOSCALE
     @rows = HEIGHT / VIDEOSCALE
     @prev_state = nil
 
     color_mode RGB, 1.0
-    frame_rate 10
+    frame_rate 3
     smooth
 
     white_out

@@ -54,14 +54,14 @@ def game_from_lifewiki_text_file(filename)
     lines = file.readlines
   end
   lines = lines.reject { |l| l =~ /^\!/ }
-  num_rows = lines.length
-  num_cols = lines.inject("") { |max, l| max = l if l.length > max.length; max }.chop.length
+  num_rows = lines.length + 2
+  num_cols = lines.inject("") { |max, l| max = l if l.length > max.length; max }.chop.length + 2
   Array.new(num_cols) { Array.new(num_rows) { 0 } }.tap do |grid|
     lines.each_with_index do |line, y|
       line.chop!
       line.length.times do |x| 
         if line[x].chr == "O"
-          grid[x][y] = 1
+          grid[x+1][y+1] = 1
         end
       end
     end
