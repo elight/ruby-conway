@@ -1,7 +1,7 @@
 <h1>Evan Light's Game of Life in Ruby</h1>
 
 
-<img src="http://cl.ly/ba1141feb7a2054c461a/content" />
+<img src="http://cl.ly/ba1141feb7a2054c461a/content" style="width: 200px; height: 200px;"/>
 
 Rendered in ruby-processing (see "gol_processing.rb")
 
