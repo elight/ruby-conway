@@ -5,19 +5,19 @@ require 'lib/gol'
 class GolProcessing < Processing::App
   WIDTH       = 1024
   HEIGHT      = 1024
-  VIDEOSCALE  = 16
+  VIDEOSCALE  = 6
 
   def setup
-    @grid = game_from_lifewiki_text_file "/Users/light/Downloads/newgun2.cells"
+    @grid = game_from_lifewiki_text_file "/Users/light/Downloads/gunstar.cells"
     @cols = WIDTH / VIDEOSCALE
     @rows = HEIGHT / VIDEOSCALE
-    @prev_state = nil
+    @gen = 0
+
+    text_font create_font("Helvetica", 24), 24
 
     color_mode RGB, 1.0
-    frame_rate 3
+    frame_rate 30
     smooth
-
-    white_out
   end
   
   def draw
@@ -37,13 +37,10 @@ class GolProcessing < Processing::App
         rect x, y, VIDEOSCALE, VIDEOSCALE
       end
     end
-    @prev_state = @grid
+    fill 0.3
+    text "Gen: #{@gen}", 10, HEIGHT - 30, 200, 20
+    @gen += 1
     @grid = @grid.next_state
-  end
-
-  def changed?(x, y)
-    @prev_state && 
-    @prev_state[x][y] != @grid[x][y]
   end
 
   def white_out
